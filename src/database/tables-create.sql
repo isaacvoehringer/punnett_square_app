@@ -39,7 +39,7 @@ ALTER TABLE IF EXISTS public.parameters
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
-    
+
 CREATE TABLE public.punnet_square_results
 (
     id smallserial NOT NULL,
@@ -65,3 +65,24 @@ ALTER TABLE IF EXISTS public.punnet_square_results
 
 COMMENT ON TABLE public.punnet_square_results
     IS 'this table will contain the result for all punnett square cross tables';
+
+CREATE TABLE public.punnett_square_results_detail
+(
+    id smallserial NOT NULL,
+    result_id integer NOT NULL,
+    parameter_value character(200) NOT NULL,
+    chance_percentage integer NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT "punnet_square_results_detailFK" FOREIGN KEY (result_id)
+        REFERENCES public.punnet_square_results (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.punnett_square_results_detail
+    OWNER to postgres;
+COMMENT ON TABLE public.punnett_square_results_detail
+    IS 'this table contains the detail of the results and will be used to render the result';
