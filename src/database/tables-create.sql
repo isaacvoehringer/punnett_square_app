@@ -18,6 +18,22 @@ ALTER TABLE IF EXISTS public.parameters
 COMMENT ON TABLE public.parameters
     IS 'this table will contain the parameters for a punnett square prediction';
 
+CREATE TABLE public.skin_colors
+(
+    id smallserial NOT NULL,
+    skin_color character(200) NOT NULL,
+    PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.skin_colors
+    OWNER to postgres;
+
+COMMENT ON TABLE public.skin_colors
+    IS 'this table will contain the possible skin colors';
+
+
 CREATE TABLE public.eye_colors
 (
     id smallserial NOT NULL,
@@ -46,7 +62,7 @@ ALTER TABLE IF EXISTS public.parameters
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
-    
+
 CREATE TABLE public.punnet_square_results
 (
     id smallserial NOT NULL,
@@ -94,17 +110,3 @@ ALTER TABLE IF EXISTS public.punnett_square_results_detail
 COMMENT ON TABLE public.punnett_square_results_detail
     IS 'this table contains the detail of the results and will be used to render the result';
 
-CREATE TABLE public.skin_colors
-(
-    id smallserial NOT NULL,
-    skin_color character(200) NOT NULL,
-    PRIMARY KEY (id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.skin_colors
-    OWNER to postgres;
-
-COMMENT ON TABLE public.skin_colors
-    IS 'this table will contain the possible skin colors';
