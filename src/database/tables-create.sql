@@ -17,3 +17,18 @@ ALTER TABLE IF EXISTS public.parameters
 
 COMMENT ON TABLE public.parameters
     IS 'this table will contain the parameters for a punnett square prediction';
+
+CREATE TABLE public.eye_colors
+(
+    id smallserial NOT NULL,
+    eye_color character(50) NOT NULL,
+    PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.eye_colors
+    OWNER to postgres;
+
+COMMENT ON TABLE public.eye_colors
+    IS 'container for all different eye colors options ';
