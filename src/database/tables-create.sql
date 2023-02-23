@@ -40,6 +40,13 @@ ALTER TABLE IF EXISTS public.parameters
     ON DELETE NO ACTION
     NOT VALID;
 
+ALTER TABLE IF EXISTS public.parameters
+    ADD CONSTRAINT "parameters_skin_colorsFK" FOREIGN KEY (skin_color)
+    REFERENCES public.skin_colors (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+    
 CREATE TABLE public.punnet_square_results
 (
     id smallserial NOT NULL,
