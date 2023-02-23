@@ -32,6 +32,14 @@ ALTER TABLE IF EXISTS public.eye_colors
 
 COMMENT ON TABLE public.eye_colors
     IS 'container for all different eye colors options ';
+
+ALTER TABLE IF EXISTS public.parameters
+    ADD CONSTRAINT "parameters_eye_colorsFK" FOREIGN KEY (eye_color)
+    REFERENCES public.eye_colors (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+    
 CREATE TABLE public.punnet_square_results
 (
     id smallserial NOT NULL,
