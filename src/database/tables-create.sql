@@ -32,3 +32,28 @@ ALTER TABLE IF EXISTS public.eye_colors
 
 COMMENT ON TABLE public.eye_colors
     IS 'container for all different eye colors options ';
+CREATE TABLE public.punnet_square_results
+(
+    id smallserial NOT NULL,
+    subject_one integer NOT NULL,
+    subject_two integer NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT "parameters_result_subject_oneFK" FOREIGN KEY (subject_one)
+        REFERENCES public.parameters (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT "parameters_result_subject_twoFK" FOREIGN KEY (subject_two)
+        REFERENCES public.parameters (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.punnet_square_results
+    OWNER to postgres;
+
+COMMENT ON TABLE public.punnet_square_results
+    IS 'this table will contain the result for all punnett square cross tables';
